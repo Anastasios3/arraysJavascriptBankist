@@ -65,13 +65,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -115,3 +115,46 @@ console.log(arr1.slice(-1)[0]); // 64 - last element of the array
 console.log(arr1.slice(-1)); // [64] - last element of the array
 
 // 144. Looping Arrays: forEach
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+console.log('---- FOR OF ----');
+
+for (const movement of movements) {
+  // for of loop - for arrays and strings - does not work with objects - does not have access to the index
+  if (movement > 0) {
+    console.log(`You deposited ${movement}`);
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`);
+  }
+} // You deposited 200, You deposited 450, You withdrew 400, You deposited 3000, You withdrew 650, You withdrew 130, You deposited 70, You deposited 1300
+
+console.log('---- FOREACH ----');
+
+movements.forEach(function (mov, i, r) {
+  // forEach method - for arrays - does not work with objects - does not have access to the index - does not return a new array
+  if (mov > 0) {
+    console.log(`Movemnt ${i + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movemnt ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+}); // You deposited 200, You deposited 450, You withdrew 400, You deposited 3000, You withdrew 650, You withdrew 130, You deposited 70, You deposited 1300
+
+// 145. forEach With Maps and Sets
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  // forEach method - for maps - does not work with arrays - does not have access to the index - does not return a new map
+  console.log(`${key}: ${value}`);
+}); // USD: United States dollar, EUR: Euro, GBP: Pound sterling
+
+// Set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique); // Set(3) {"USD", "GBP", "EUR"}
+currenciesUnique.forEach(function (value, _, set) {
+  // forEach method - for sets - does not work with arrays - does not have access to the index - does not return a new set
+  console.log(`${value}: ${value}`);
+}); // USD: USD, GBP: GBP, EUR: EUR
